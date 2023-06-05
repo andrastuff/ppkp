@@ -112,13 +112,20 @@ class AuthTpkController extends Controller
     {
         
 		$user = $request->user();
-		$user->role = 'tpk';
-		 
-		$user->wilayah = Wilayah::find($user->wilayah_id)->nama;
+		
+		if ($user->tokenCan('administrator')) {
+			$user->role = 'administrator';
 			 
+		}elseif($user->tokenCan('tpk')){
+			 
+			$user->role = 'tpk';
+			 
+			$user->wilayah = Wilayah::find($user->wilayah_id)->nama;
+		}
 		
 		return $user;
     }
+	 
     public function destroy(Request $request)
     {
         $request->user()->currentAccessToken()->delete();

@@ -126,13 +126,14 @@ CREATE TABLE `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `personal_access_tokens` */
 
 insert  into `personal_access_tokens`(`id`,`tokenable_type`,`tokenable_id`,`name`,`token`,`abilities`,`last_used_at`,`created_at`,`updated_at`) values 
 (1,'App\\Models\\Tbl_user_tpk',3,'auth_token','0f67075a60927bafe15015b5919829152a64295f39790bf39efdb283afed1b20','[\"tpk\"]',NULL,'2023-05-28 18:44:01','2023-05-28 18:44:01'),
-(4,'App\\Models\\Tbl_user_tpk',3,'auth_token','342c8bc4693d396d571242be0bc0ae7cd48b586389682f6f7c2182b0a68b06ac','[\"tpk\"]','2023-05-28 23:25:54','2023-05-28 19:38:08','2023-05-28 23:25:54');
+(4,'App\\Models\\Tbl_user_tpk',3,'auth_token','342c8bc4693d396d571242be0bc0ae7cd48b586389682f6f7c2182b0a68b06ac','[\"tpk\"]','2023-05-28 23:25:54','2023-05-28 19:38:08','2023-05-28 23:25:54'),
+(42,'App\\Models\\User',1,'authToken','b11367480687cccdba66ef727f39b605d802eeff8f2d46c99342db2113713d1c','[\"*\"]',NULL,'2023-06-05 14:55:54','2023-06-05 14:55:54');
 
 /*Table structure for table `role_has_permissions` */
 
@@ -171,8 +172,8 @@ DROP TABLE IF EXISTS `tbl_baduta`;
 
 CREATE TABLE `tbl_baduta` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
-  `kode_baduta` int(12) NOT NULL,
-  `wilayah_id` int(12) NOT NULL,
+  `kode_baduta` varchar(12) NOT NULL,
+  `wilayah_id` varchar(20) NOT NULL,
   `pendamping_id` int(12) NOT NULL,
   `nik` varchar(225) NOT NULL,
   `nama` varchar(225) NOT NULL,
@@ -209,9 +210,12 @@ CREATE TABLE `tbl_baduta` (
   `tgl_kunjungan` varchar(11) NOT NULL,
   `catatan_baduta` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_baduta` */
+
+insert  into `tbl_baduta`(`id`,`kode_baduta`,`wilayah_id`,`pendamping_id`,`nik`,`nama`,`tgl_lahir`,`usia`,`status_usia`,`tgl_lahir_anak_sebelum`,`status_jarak_kehamilan`,`penggunaan_kontrasepsi`,`air_minum_layak`,`tempat_bab_layak`,`nama_bayi`,`tgl_lahir_bayi`,`usia_bayi`,`jenis_kelamin`,`urutan_anak_ke`,`status_urutan_anak`,`umur_kehamilan`,`pb_lahir`,`bb_kehamilan`,`asi_ekslusif`,`tgl_pengukuran_saat_ini`,`bb_saat_ini`,`status_bb_saat_ini`,`pb_saat_ini`,`status_pb`,`status_bb_pb`,`pengisian_kka`,`kehadiran_posyandu`,`penyuluhan_kie`,`pemberian_fasilitas_rujukan`,`bansos`,`kunjungan`,`tgl_kunjungan`,`catatan_baduta`) values 
+(1,'qwd223','18.05.06',3,'132213131','donita','2000-06-02',0,'jj','2022-06-02','qwe',1,1,1,'bujunkey','2023-06-02',1,1,1,1,'1','1','1',1,'1','1','1','1','1','1',1,1,2,1,1,1,'2023-06-04','');
 
 /*Table structure for table `tbl_bumil` */
 
@@ -220,7 +224,7 @@ DROP TABLE IF EXISTS `tbl_bumil`;
 CREATE TABLE `tbl_bumil` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `kode_bumil` varchar(20) NOT NULL,
-  `wilayah_id` int(12) NOT NULL,
+  `wilayah_id` varchar(20) NOT NULL,
   `pendamping_id` int(12) NOT NULL,
   `nik` varchar(225) NOT NULL,
   `nama` varchar(225) NOT NULL,
@@ -252,9 +256,13 @@ CREATE TABLE `tbl_bumil` (
   `kunjungan` tinyint(2) NOT NULL,
   `catatan_kunjungan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_bumil` */
+
+insert  into `tbl_bumil`(`id`,`kode_bumil`,`wilayah_id`,`pendamping_id`,`nik`,`nama`,`tgl_lahir`,`telp`,`alamat`,`jumlah_anak`,`status_jumlah_anak`,`usia_hamil`,`tfu`,`status_tfu`,`bb`,`tb`,`imt`,`status_imt`,`riwayat_penyakit`,`status_riwayat_penyakit`,`kadar_hb`,`status_hb`,`lila`,`status_lila`,`tbj`,`status_tbj`,`terpapar_rokok`,`suplement_darah`,`rujukan_pelayanan`,`bansos`,`tgl_kunjungan`,`kunjungan`,`catatan_kunjungan`) values 
+(1,'12wesw','18.05.02.1008',3,'1231231231','andini hapsari','2000-01-01','12312313','menggala',1,1,6,'1',1,23,165,1,1,'asdadsasda',1,'1',1,'1',1,1,'1',2,1,1,1,'2023-06-02',1,'wqeqwe'),
+(2,'12wesw','18.05.02',3,'1231231231','andini hapsari','2000-01-01','12312313','menggala',1,1,6,'1',1,23,165,1,1,'asdadsasda',1,'1',1,'1',1,1,'1',2,1,1,1,'2023-05-30',2,'wqeqwe');
 
 /*Table structure for table `tbl_catin` */
 
@@ -263,7 +271,7 @@ DROP TABLE IF EXISTS `tbl_catin`;
 CREATE TABLE `tbl_catin` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `kode_catin` varchar(20) NOT NULL,
-  `wilayah_id` int(10) NOT NULL,
+  `wilayah_id` varchar(20) NOT NULL,
   `pendamping_id` int(12) NOT NULL,
   `nama_catin_pria` varchar(225) NOT NULL,
   `nik_catin_pria` varchar(100) NOT NULL,
@@ -290,13 +298,16 @@ CREATE TABLE `tbl_catin` (
   `merokok_pria` tinyint(1) NOT NULL,
   `status_resiko` tinyint(1) NOT NULL,
   `status_ideal` tinyint(1) NOT NULL,
-  `tgl_pendampingan` varchar(20) NOT NULL,
+  `tgl_kunjungan` varchar(20) NOT NULL,
   `kunjungan` int(11) NOT NULL,
-  `catatan_pendampingan` text NOT NULL,
+  `catatan_kunjungan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_catin` */
+
+insert  into `tbl_catin`(`id`,`kode_catin`,`wilayah_id`,`pendamping_id`,`nama_catin_pria`,`nik_catin_pria`,`tgl_lahir_catin_pria`,`usia_catin_pria`,`status_usia_catin_pria`,`alamat_catin_pria`,`nama_catin_wanita`,`telp_catin_wanita`,`nik_catin_wanita`,`tgl_lahir_catin_wanita`,`usia_catin_wanita`,`status_usia_catin_wanita`,`alamat_catin_wanita`,`tgl_pernikahan`,`tb_catin_wanita`,`bb_catin_wanita`,`imt`,`status_imt`,`kadar_hb`,`status_hb`,`terpapar_rokok`,`lila`,`merokok_pria`,`status_resiko`,`status_ideal`,`tgl_kunjungan`,`kunjungan`,`catatan_kunjungan`) values 
+(1,'qweds','18.05.06',3,'Dai Handoyo','1231231313131','1990-01-23','33',1,'gedung aji','Putri','082536221','123123123131','2000-04-12','23',1,'menggala','2023-6-22',167,45,23,23,'23','23',1,'2',2,1,2,'2023-05-30',1,'q');
 
 /*Table structure for table `tbl_ket_variabel` */
 
@@ -310,9 +321,15 @@ CREATE TABLE `tbl_ket_variabel` (
   `kode` int(11) DEFAULT NULL,
   `ket_kode` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_ket_variabel` */
+
+insert  into `tbl_ket_variabel`(`id`,`tbl_variabel`,`nama_variabel`,`ket_variabel`,`kode`,`ket_kode`) values 
+(1,'tbl_bumil','terpapar_rokok','Terpapar Rokok',1,'Tidak'),
+(2,'tbl_bumil','terpapar_rokok','Terpapar Rokok',2,'Ya'),
+(3,'tbl_bumil','suplement_darah','Suplemen darah',1,'Tidak'),
+(4,'tbl_bumil','suplement_darah','Suplemen darah',2,'Ya');
 
 /*Table structure for table `tbl_pasca_persalinan` */
 
@@ -320,8 +337,8 @@ DROP TABLE IF EXISTS `tbl_pasca_persalinan`;
 
 CREATE TABLE `tbl_pasca_persalinan` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
-  `kode_pasca_persalinan` int(12) NOT NULL,
-  `wilayah_id` int(12) NOT NULL,
+  `kode_pasca_persalinan` varchar(12) NOT NULL,
+  `wilayah_id` varchar(20) NOT NULL,
   `pendamping_id` int(12) NOT NULL,
   `nik` varchar(225) NOT NULL,
   `nama` varchar(225) NOT NULL,
@@ -345,9 +362,12 @@ CREATE TABLE `tbl_pasca_persalinan` (
   `kunjungan` int(2) NOT NULL,
   `catatan_kunjungan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_pasca_persalinan` */
+
+insert  into `tbl_pasca_persalinan`(`id`,`kode_pasca_persalinan`,`wilayah_id`,`pendamping_id`,`nik`,`nama`,`tgl_lahir`,`telp`,`alamat`,`tgl_melahirkan`,`tempat_persalinan`,`penolong_persalinan`,`komplikasi_nifas`,`jenis_komplikasi`,`kb_pasca_persalinan`,`jenis_kb`,`alasan_kb`,`alasan_tidak_kb`,`status_ibu`,`rujukan_pelayanan`,`bansos`,`tgl_kunjungan_berikut`,`tgl_kunjungan`,`kunjungan`,`catatan_kunjungan`) values 
+(1,'qweqww2','18.05.06',3,'114343242','Anggraini','2000-01-01','08273622','Kampung Tua','2023-06-01',1,1,1,'diabetes',2,2,'suami dirumah','',1,2,3,'2023-06-14','2023-05-31',1,'');
 
 /*Table structure for table `tbl_setting` */
 
@@ -380,7 +400,7 @@ CREATE TABLE `tbl_setting` (
 /*Data for the table `tbl_setting` */
 
 insert  into `tbl_setting`(`idset`,`idadm`,`googlecode`,`judul`,`deskripsi`,`logo`,`alamat`,`telp`,`telp2`,`email`,`metatag`,`footer`,`fb`,`twitter`,`google`,`youtube`,`linked`,`metadesc`,`metakey`,`maps`) values 
-(1,2,'','Aplikasi','Aplikasi','logo.png','Jalan Cemara Komplek Perkantoran Pemda Tulang Bawang, Menggala.','08120000000','0721 000 222','','','Copyright © 2020 DISKOMINFO. All Rights Reserved.','','','','','','','','<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127101.55546063841!2d105.20069698136186!3d-5.428575518058512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40da46f3aa6fbf%3A0x3039d80b220cc40!2sBandar+Lampung%2C+Kota+Bandar+Lampung%2C+Lampung!5e0!3m2!1sid!2sid!4v1485576407886\" width=\"100%\" height=\"350\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>');
+(1,2,'','Sistem Informasi PP KB','Sebuah inovasi untuk menekan angka stunting yang ditujukan kepada calon pengantin, pasangan usia subur, ibu hamil, ibu pasca persalinan, dan balita.','logo.png','Jalan Cemara Komplek Perkantoran Pemda Tulang Bawang, Menggala.','08120000000','0721 000 222','ppkb@gmail.com','','Copyright © 2023. All Rights Reserved.','','','','','','','','<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127101.55546063841!2d105.20069698136186!3d-5.428575518058512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40da46f3aa6fbf%3A0x3039d80b220cc40!2sBandar+Lampung%2C+Kota+Bandar+Lampung%2C+Lampung!5e0!3m2!1sid!2sid!4v1485576407886\" width=\"100%\" height=\"350\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>');
 
 /*Table structure for table `tbl_user_tpk` */
 
@@ -388,7 +408,8 @@ DROP TABLE IF EXISTS `tbl_user_tpk`;
 
 CREATE TABLE `tbl_user_tpk` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `wilayah_id` int(12) NOT NULL,
+  `wilayah_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nip` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jabatan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -402,12 +423,13 @@ CREATE TABLE `tbl_user_tpk` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tbl_user_mitra_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tbl_user_tpk` */
 
-insert  into `tbl_user_tpk`(`id`,`wilayah_id`,`nama`,`jabatan`,`alamat`,`avatar`,`no_telp`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(3,31,'Ardi Andra',NULL,NULL,NULL,'085769306099','testing@gmail.com',NULL,'$2y$10$uMTECjdLypD1Wfp29aSgf.MYxq6OK6m.jSNzSLol72kYiptVYANG.','hurgQrcFsnj1YcPsdJqW1JIjPzqVMmV6ZhuwYpMcQJqcg5W7dbYPuSRENzYN','2022-08-14 19:50:22','2022-08-14 19:50:22');
+insert  into `tbl_user_tpk`(`id`,`wilayah_id`,`nip`,`nama`,`jabatan`,`alamat`,`avatar`,`no_telp`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
+(3,'18.05.02','2323232','Ardi Andra',NULL,NULL,NULL,'085769306099','testing@gmail.com',NULL,'$2y$10$uMTECjdLypD1Wfp29aSgf.MYxq6OK6m.jSNzSLol72kYiptVYANG.','hurgQrcFsnj1YcPsdJqW1JIjPzqVMmV6ZhuwYpMcQJqcg5W7dbYPuSRENzYN','2022-08-14 19:50:22','2023-06-04 21:38:25'),
+(7,'18.05.02','12322','daniel',NULL,'asas',NULL,'085769306099','ppkb@gmail.com',NULL,'$2y$10$viMtjQLFkE3qCnbr39Mm0.SoUAOQnqtT94t1thnLylvIRaR354lUW',NULL,'2023-06-04 21:49:58','2023-06-04 21:49:58');
 
 /*Table structure for table `tbl_wilayah` */
 
@@ -596,7 +618,9 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telp` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -605,9 +629,12 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
+
+insert  into `users`(`id`,`nama`,`alamat`,`telp`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
+(1,'Ardi mahendra','bandar lampung','85769306099','ardiandra45@gmail.com',NULL,'$2y$10$uMTECjdLypD1Wfp29aSgf.MYxq6OK6m.jSNzSLol72kYiptVYANG.',NULL,'2023-06-01 16:43:57','2023-06-04 18:12:15');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

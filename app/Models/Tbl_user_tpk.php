@@ -23,7 +23,7 @@ class Tbl_user_tpk extends Authenticatable
 	protected $fillable = [
         'wilayah_id',
         'nama',
-        'jabatan',
+        'nip',
         'no_telp',
         'alamat',
         'wilayah_id',

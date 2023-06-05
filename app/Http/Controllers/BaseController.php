@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tbl_setting as Setting;
+use Illuminate\Support\Facades\Auth;
+
 
 class BaseController extends Controller
 {
@@ -12,6 +15,7 @@ class BaseController extends Controller
         $access = '';
         $client = new \GuzzleHttp\Client();
         $token = $_COOKIE['access_tokenku'];
+		 
         $headers = [
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . $token,
@@ -36,4 +40,25 @@ class BaseController extends Controller
             return abort(404, 'user not found.');
         }
     }
+	
+	public function User()
+    {
+        return Auth::user();
+    }
+	
+	public static function Meta(){
+		
+		$setting = Setting::firstOrFail();
+		$setting->logo						= url('assets/images/web/logo.png');
+		 
+
+		foreach($setting->toArray() as $key=>$val){
+			$result[$key] = $val;
+		}
+		
+		return $result;
+
+	}
+	
+	
 }
